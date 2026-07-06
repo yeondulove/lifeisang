@@ -22,6 +22,7 @@ export default function PhiloticPage() {
           { href: "#books", label: "출간 도서" },
           { href: "#contact", label: "문의" },
           { href: "/pudufu", label: "프드프" },
+          { href: "/careers", label: "채용" },
         ]}
         cta={{
           href: "#books",

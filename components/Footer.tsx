@@ -27,6 +27,9 @@ export default function Footer() {
             <a href="/" className="transition hover:text-slate-900">
               회사 소개
             </a>
+            <a href="/careers" className="transition hover:text-slate-900">
+              채용
+            </a>
             <a href="/#contact" className="transition hover:text-slate-900">
               문의하기
             </a>

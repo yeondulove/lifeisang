@@ -25,6 +25,7 @@ export default function PudufuPage() {
           { href: "#cases", label: "수강 후기" },
           { href: "#process", label: "이용 방법" },
           { href: "/philotic", label: "필로틱" },
+          { href: "/careers", label: "채용" },
         ]}
         cta={{
           href: "#contact",
