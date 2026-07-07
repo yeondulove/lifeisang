@@ -16,18 +16,14 @@ export default function PhiloticPage() {
     <>
       <SiteHeader
         brandName="필로틱"
-        brandTextClass="text-xl font-serif font-bold tracking-tight text-slate-900"
+        brandTextClass="text-xl font-serif font-bold tracking-tight text-white"
         links={[
           { href: "#books", label: "출간 도서" },
           { href: "#contact", label: "문의" },
           { href: "/pudufu", label: "프드프" },
           { href: "/careers", label: "채용" },
         ]}
-        cta={{
-          href: "#books",
-          label: "도서 살펴보기",
-          className: "bg-slate-900 hover:bg-slate-700",
-        }}
+        cta={{ href: "#books", label: "도서 살펴보기" }}
       />
       <main className="flex-1">
         <Hero />

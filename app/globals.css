@@ -5,16 +5,19 @@
     sans-serif;
   --font-serif: var(--font-noto-serif-kr), "Nanum Myeongjo", serif;
 
-  /* 라이프해킹(주) 오렌지 팔레트 */
-  --color-brand: #ff6b00; /* 메인 오렌지 */
-  --color-brand-bright: #ff8a00; /* 밝은 포인트 오렌지 */
-  --color-brand-soft: #fff3e8; /* 부드러운 배경 오렌지 */
-  --color-brand-hover: #e85d04; /* 진한 강조 오렌지 */
+  /* 라이프해킹 다크 글래스 테마 */
+  --color-accent: #6bd7ff;
+  --color-accent-strong: #4ba8ff;
+  --color-muted: #b8c1cd;
+  --color-panel: rgba(255, 255, 255, 0.08);
+  --color-panel-strong: rgba(255, 255, 255, 0.14);
+  --color-hairline: rgba(255, 255, 255, 0.12);
+  --color-ink-950: #07131f;
+  --color-ink-900: #0f2236;
 
-  /* 필로틱 브랜드 컬러 (잉크 네이비 + 종이 크림) */
-  --color-ink: #1e3a5f;
-  --color-ink-hover: #16304f;
-  --color-paper: #f7f4ee;
+  /* 프드프 오렌지 (필요 시 재사용) */
+  --color-brand: #ff6b00;
+  --color-brand-hover: #e85d04;
 }
 
 html {
@@ -23,4 +26,34 @@ html {
 
 body {
   font-family: var(--font-sans);
+  color: #f4f7fb;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(107, 215, 255, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #07131f 0%, #0f2236 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* 글래스 패널 공통 그라데이션 */
+.glass {
+  border: 1px solid var(--color-hairline);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.13),
+    rgba(255, 255, 255, 0.06)
+  );
+}
+
+/* 시안 그라데이션 프라이머리 버튼 */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-strong)
+  );
+  color: #052035;
 }

@@ -38,7 +38,7 @@ export default function RootLayout({
       lang="ko"
       className={`${notoSansKr.variable} ${notoSerifKr.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
+      <body className="min-h-full flex flex-col">
         {children}
       </body>
     </html>

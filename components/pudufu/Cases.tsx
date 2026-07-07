@@ -24,15 +24,15 @@ const CASES = [
 
 export default function Cases() {
   return (
-    <section id="cases" className="scroll-mt-16 bg-brand-soft">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <p className="text-sm font-bold uppercase tracking-widest text-brand">
+    <section id="cases" className="scroll-mt-16">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <p className="text-sm font-bold uppercase tracking-widest text-accent">
           Reviews
         </p>
-        <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
           수강생이 직접 만든 변화
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
           평균 평점 4.9점. 숫자보다 확실한 건 수강생들의 실제 이야기입니다.
         </p>
 
@@ -40,18 +40,18 @@ export default function Cases() {
           {CASES.map((item) => (
             <figure
               key={item.name}
-              className="flex flex-col rounded-2xl bg-white p-8 shadow-sm ring-1 ring-brand/10"
+              className="glass flex flex-col rounded-2xl p-8"
             >
-              <p className="text-brand" aria-label="별점 5점 만점에 5점">
+              <p className="text-accent" aria-label="별점 5점 만점에 5점">
                 ★★★★★
               </p>
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-700">
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-white/90">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-6 border-t border-slate-100 pt-5">
-                <p className="text-sm font-bold">{item.name}</p>
-                <p className="mt-0.5 text-xs text-slate-500">{item.program}</p>
-                <p className="mt-3 inline-block rounded-full bg-brand-soft px-3 py-1 text-xs font-bold text-brand-hover">
+              <figcaption className="mt-6 border-t border-hairline pt-5">
+                <p className="text-sm font-bold text-white">{item.name}</p>
+                <p className="mt-0.5 text-xs text-muted">{item.program}</p>
+                <p className="mt-3 inline-block rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
                   {item.result}
                 </p>
               </figcaption>

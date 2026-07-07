@@ -51,48 +51,48 @@ const POSITIONS = [
 
 export default function Positions() {
   return (
-    <section id="positions" className="scroll-mt-16 bg-slate-50">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <p className="text-sm font-bold uppercase tracking-widest text-brand">
+    <section id="positions" className="scroll-mt-16">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <p className="text-sm font-bold uppercase tracking-widest text-accent">
           Open Positions
         </p>
-        <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
           채용 중인 포지션
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
           지금 딱 맞는 공고가 없어도 괜찮습니다. 함께하고 싶은 이유가 있다면
           언제든 문을 두드려 주세요.
         </p>
 
-        <ul className="mt-12 divide-y divide-slate-200 overflow-hidden rounded-2xl bg-white ring-1 ring-slate-200">
+        <ul className="glass mt-12 divide-y divide-[rgba(255,255,255,0.08)] overflow-hidden rounded-2xl">
           {POSITIONS.map((position) => (
             <li key={`${position.team}-${position.title}`}>
               <a
                 href="mailto:hr.dev@isanghan.co.kr?subject=[라이프해킹 지원] 포지션 문의"
-                className="group flex flex-col gap-3 p-6 transition hover:bg-brand-soft sm:flex-row sm:items-center sm:justify-between sm:p-7"
+                className="group flex flex-col gap-3 p-6 transition hover:bg-white/5 sm:flex-row sm:items-center sm:justify-between sm:p-7"
               >
                 <div className="sm:max-w-xl">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-bold text-brand-hover">
+                    <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
                       {position.team}
                     </span>
-                    <h3 className="text-lg font-bold text-slate-900">
+                    <h3 className="text-lg font-bold text-white">
                       {position.title}
                     </h3>
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
                     {position.description}
                   </p>
                 </div>
                 <div className="flex items-center gap-4 sm:flex-col sm:items-end sm:gap-1">
-                  <span className="text-sm font-bold text-slate-700">
+                  <span className="text-sm font-bold text-white/90">
                     {position.type}
                   </span>
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-muted">
                     {position.location}
                   </span>
                   <span
-                    className="hidden text-sm font-bold text-brand transition group-hover:translate-x-1 sm:mt-2 sm:inline-flex"
+                    className="hidden text-sm font-bold text-accent transition group-hover:translate-x-1 sm:mt-2 sm:inline-flex"
                     aria-hidden
                   >
                     지원하기 →

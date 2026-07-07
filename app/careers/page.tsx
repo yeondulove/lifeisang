@@ -18,17 +18,13 @@ export default function CareersPage() {
       <SiteHeader
         logoSrc="/logo/lifehacking-wordmark.png"
         logoAlt="라이프해킹주식회사"
-        logoBoxClass="h-7 w-[200px] sm:w-[220px]"
+        logoBoxClass="h-6 w-[170px] sm:w-[190px]"
         links={[
           { href: "#culture", label: "문화" },
           { href: "#positions", label: "채용 포지션" },
           { href: "/", label: "회사 소개" },
         ]}
-        cta={{
-          href: "#apply",
-          label: "지원하기",
-          className: "bg-brand hover:bg-brand-hover",
-        }}
+        cta={{ href: "#apply", label: "지원하기" }}
       />
       <main className="flex-1">
         <Hero />

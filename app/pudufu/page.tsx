@@ -27,11 +27,7 @@ export default function PudufuPage() {
           { href: "/philotic", label: "필로틱" },
           { href: "/careers", label: "채용" },
         ]}
-        cta={{
-          href: "#contact",
-          label: "무료로 시작하기",
-          className: "bg-brand hover:bg-brand-hover",
-        }}
+        cta={{ href: "#contact", label: "무료로 시작하기" }}
       />
       <main className="flex-1">
         <Hero />

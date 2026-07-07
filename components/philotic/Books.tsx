@@ -24,22 +24,19 @@ const BOOKS = [
 
 export default function Books() {
   return (
-    <section
-      id="books"
-      className="scroll-mt-16 border-t border-slate-100 bg-white"
-    >
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section id="books" className="scroll-mt-16 border-t border-hairline">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="flex items-baseline justify-between">
-          <h2 className="font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="font-serif text-2xl font-bold tracking-tight text-white sm:text-3xl">
             출간 도서
           </h2>
-          <span className="text-sm text-slate-400">전체 {BOOKS.length}종</span>
+          <span className="text-sm text-muted">전체 {BOOKS.length}종</span>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-4">
           {BOOKS.map((book) => (
             <article key={book.title} className="group">
-              <div className="relative aspect-[2/3] overflow-hidden rounded-sm bg-slate-100 shadow-md ring-1 ring-black/5 transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl">
+              <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-white/5 shadow-xl ring-1 ring-hairline transition duration-300 group-hover:-translate-y-1.5 group-hover:ring-accent/40">
                 <Image
                   src={book.cover}
                   alt={`${book.title} 표지`}
@@ -48,12 +45,12 @@ export default function Books() {
                   className="object-cover"
                 />
                 {book.bestseller && (
-                  <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-bold tracking-wide text-slate-900 shadow-sm">
+                  <span className="absolute left-3 top-3 rounded-full bg-gradient-to-br from-accent to-accent-strong px-2.5 py-1 text-[11px] font-bold tracking-wide text-[#052035] shadow-sm">
                     베스트셀러
                   </span>
                 )}
               </div>
-              <p className="mt-4 text-sm font-bold leading-snug text-slate-900">
+              <p className="mt-4 text-sm font-bold leading-snug text-white">
                 {book.title}
               </p>
             </article>

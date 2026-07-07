@@ -36,15 +36,15 @@ const BENEFITS = [
 
 export default function Culture() {
   return (
-    <section id="culture" className="scroll-mt-16 bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <p className="text-sm font-bold uppercase tracking-widest text-brand">
+    <section id="culture" className="scroll-mt-16">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <p className="text-sm font-bold uppercase tracking-widest text-accent">
           Our Culture
         </p>
-        <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
           우리가 일하는 방식
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
           어떤 사람과 함께 일하고 싶은지가, 우리가 어떤 회사인지를 말해줍니다.
         </p>
 
@@ -52,31 +52,29 @@ export default function Culture() {
           {VALUES.map((value) => (
             <div
               key={value.title}
-              className="rounded-2xl border border-slate-200 p-8 transition hover:border-brand hover:shadow-lg"
+              className="glass rounded-2xl p-8 transition hover:-translate-y-1 hover:border-accent/40"
             >
               <span
-                className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-2xl"
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-2xl"
                 aria-hidden
               >
                 {value.icon}
               </span>
-              <h3 className="mt-4 text-xl font-bold">{value.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              <h3 className="mt-4 text-xl font-bold text-white">{value.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
                 {value.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 rounded-2xl bg-brand-soft p-8 sm:p-10">
-          <h3 className="text-lg font-bold text-slate-900">
-            함께 누리는 복지
-          </h3>
+        <div className="glass mt-12 rounded-2xl p-8 sm:p-10">
+          <h3 className="text-lg font-bold text-white">함께 누리는 복지</h3>
           <ul className="mt-5 flex flex-wrap gap-3">
             {BENEFITS.map((benefit) => (
               <li
                 key={benefit}
-                className="rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-700 ring-1 ring-brand/15"
+                className="rounded-full border border-hairline bg-white/5 px-4 py-2 text-sm font-bold text-muted"
               >
                 {benefit}
               </li>

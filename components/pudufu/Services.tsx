@@ -31,15 +31,15 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="services" className="scroll-mt-16 bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <p className="text-sm font-bold uppercase tracking-widest text-brand">
+    <section id="services" className="scroll-mt-16">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+        <p className="text-sm font-bold uppercase tracking-widest text-accent">
           Services
         </p>
-        <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 className="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl">
           지식을 즐기는 네 가지 방법
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
           읽고, 보고, 실행하고, 구독하세요. 어떤 방식이든 아무도 알려주지 않던
           상위 1%의 노하우가 여러분의 것이 됩니다.
         </p>
@@ -48,16 +48,16 @@ export default function Services() {
           {SERVICES.map((service) => (
             <div
               key={service.name}
-              className="group rounded-2xl border border-slate-200 p-8 transition hover:-translate-y-1 hover:border-brand hover:shadow-lg"
+              className="glass group rounded-2xl p-8 transition hover:-translate-y-1 hover:border-accent/40"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-2xl" aria-hidden>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-2xl" aria-hidden>
                 {service.icon}
               </span>
-              <h3 className="mt-4 text-xl font-bold">{service.name}</h3>
-              <p className="mt-1 text-sm font-bold text-brand">
+              <h3 className="mt-4 text-xl font-bold text-white">{service.name}</h3>
+              <p className="mt-1 text-sm font-bold text-accent">
                 {service.tagline}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              <p className="mt-3 text-sm leading-relaxed text-muted">
                 {service.description}
               </p>
             </div>
