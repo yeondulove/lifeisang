@@ -1,22 +1,38 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 type NavLink = { href: string; label: string };
 
 type SiteHeaderProps = {
-  brandName: string;
-  logoChar: string;
-  /** 로고 칩 배경색 (예: "bg-brand") */
-  logoClassName: string;
+  /** 로고 옆/대신 표시할 브랜드 텍스트 (이미지 로고만 쓸 경우 생략) */
+  brandName?: string;
+  brandHref?: string;
+  /** 이미지 로고 경로. 있으면 문자 칩 대신 이미지를 렌더한다. */
+  logoSrc?: string;
+  logoAlt?: string;
+  /** 이미지 로고 컨테이너 크기 클래스 (예: "h-7 w-[210px]") */
+  logoBoxClass?: string;
+  /** 이미지 로고가 없을 때 쓰는 문자 칩 */
+  logoChar?: string;
+  /** 문자 칩 배경색 (예: "bg-brand") */
+  logoClassName?: string;
+  /** 브랜드 텍스트 스타일 (예: 명조체) */
+  brandTextClass?: string;
   links: NavLink[];
   cta: { href: string; label: string; className: string };
 };
 
 export default function SiteHeader({
   brandName,
+  brandHref = "/",
+  logoSrc,
+  logoAlt,
+  logoBoxClass = "h-7 w-40",
   logoChar,
   logoClassName,
+  brandTextClass = "text-lg font-black tracking-tight",
   links,
   cta,
 }: SiteHeaderProps) {
@@ -43,13 +59,26 @@ export default function SiteHeader({
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a href="/" className="flex items-center gap-2 text-lg font-black tracking-tight">
-          <span
-            className={`flex h-8 w-8 items-center justify-center rounded-lg text-white ${logoClassName}`}
-          >
-            {logoChar}
-          </span>
-          {brandName}
+        <a href={brandHref} className="flex items-center gap-2">
+          {logoSrc ? (
+            <span className={`relative block ${logoBoxClass}`}>
+              <Image
+                src={logoSrc}
+                alt={logoAlt ?? brandName ?? "로고"}
+                fill
+                sizes="240px"
+                className="object-contain object-left"
+                loading="eager"
+              />
+            </span>
+          ) : logoChar ? (
+            <span
+              className={`flex h-8 w-8 items-center justify-center rounded-lg text-white ${logoClassName ?? "bg-slate-900"}`}
+            >
+              {logoChar}
+            </span>
+          ) : null}
+          {brandName ? <span className={brandTextClass}>{brandName}</span> : null}
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">

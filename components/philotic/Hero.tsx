@@ -1,56 +1,63 @@
-const STATS = [
-  { value: "6종+", label: "출간 도서" },
-  { value: "3종", label: "베스트셀러 선정" },
-  { value: "10만+", label: "독자와의 만남" },
+import Image from "next/image";
+
+const FEATURED = [
+  { title: "프로이트의 감정수업", cover: "/books/freud.jpg" },
+  { title: "완벽한 원시인", cover: "/books/wonsiin.jpg" },
+  { title: "무한의 부", cover: "/books/muhan.jpg" },
 ];
 
 export default function Hero() {
   return (
-    <section className="bg-paper">
-      <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
-        <span className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-white px-4 py-1.5 text-sm font-bold text-ink">
-          출판사 필로틱
-        </span>
-
-        <h1 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
-          단단한 삶을 만드는
-          <br />
-          <span className="underline decoration-brand decoration-4 underline-offset-8">
-            한 권의 책
-          </span>
-        </h1>
-
-        <p className="mt-8 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-          필로틱은 심리, 부, 인간 본성을 깊이 있게 다루는 책을 만듭니다.
-          『역행자』, 『완벽한 원시인』, 『프로이트의 감정수업』 등 베스트셀러로
-          검증된 통찰을 독자에게 전합니다.
+    <section className="bg-white">
+      <div className="mx-auto max-w-6xl px-4 pb-16 pt-20 sm:px-6 sm:pb-24 sm:pt-28">
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">
+          Philotic · 출판사
         </p>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <h1 className="mt-8 max-w-3xl font-serif text-4xl font-bold leading-[1.35] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          단단한 삶을 만드는
+          <br />한 권의 책
+        </h1>
+
+        <p className="mt-8 max-w-xl text-base leading-loose text-slate-500 sm:text-lg">
+          필로틱은 심리와 부, 인간 본성을 깊이 있게 다룹니다. 오래 곁에 두고
+          다시 펼치게 되는 책을 만듭니다.
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
           <a
             href="#books"
-            className="rounded-full bg-ink px-8 py-4 text-center text-base font-bold text-white transition hover:bg-ink-hover"
+            className="border-b border-slate-900 pb-1 text-sm font-bold text-slate-900 transition hover:border-slate-300 hover:text-slate-500"
           >
             출간 도서 보기
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-ink/30 bg-white px-8 py-4 text-center text-base font-bold text-ink transition hover:border-ink"
+            className="text-sm font-medium text-slate-500 transition hover:text-slate-900"
           >
-            원고 투고 · 제휴 문의
+            원고 투고 · 제휴 문의 →
           </a>
         </div>
 
-        <dl className="mt-16 grid grid-cols-3 gap-4 border-t border-ink/10 pt-8 sm:gap-8">
-          {STATS.map((stat) => (
-            <div key={stat.label}>
-              <dt className="text-sm text-slate-500">{stat.label}</dt>
-              <dd className="mt-1 text-2xl font-black text-ink sm:text-3xl">
-                {stat.value}
-              </dd>
-            </div>
+        <div className="mt-16 grid grid-cols-3 gap-5 sm:mt-20 sm:max-w-2xl sm:gap-10">
+          {FEATURED.map((book) => (
+            <figure key={book.title}>
+              <div className="relative aspect-[2/3] overflow-hidden rounded-sm bg-slate-100 shadow-md ring-1 ring-black/5">
+                <Image
+                  src={book.cover}
+                  alt={`${book.title} 표지`}
+                  fill
+                  sizes="(min-width: 640px) 220px, 30vw"
+                  className="object-cover"
+                  loading="eager"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-xs text-slate-500 sm:text-sm">
+                {book.title}
+              </figcaption>
+            </figure>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

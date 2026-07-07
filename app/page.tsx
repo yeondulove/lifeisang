@@ -36,9 +36,9 @@ export default function Home() {
   return (
     <>
       <SiteHeader
-        brandName="라이프해킹"
-        logoChar="L"
-        logoClassName="bg-slate-900"
+        logoSrc="/logo/lifehacking-wordmark.png"
+        logoAlt="라이프해킹주식회사"
+        logoBoxClass="h-7 w-[200px] sm:w-[220px]"
         links={[
           { href: "/pudufu", label: "프드프" },
           { href: "/philotic", label: "필로틱" },
@@ -69,18 +69,13 @@ export default function Home() {
               검증된 지식을 가장 배우기 좋은 형태로 만들어, 누구나 더 나은
               선택을 할 수 있도록 돕습니다.
             </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <div className="mt-10 flex justify-center">
               <a
-                href="/pudufu"
-                className="w-full rounded-full bg-brand px-8 py-4 text-base font-bold text-white transition hover:bg-brand-hover sm:w-auto"
+                href="#brands"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-4 text-base font-bold text-white transition hover:bg-slate-700"
               >
-                프드프 바로가기
-              </a>
-              <a
-                href="/philotic"
-                className="w-full rounded-full bg-ink px-8 py-4 text-base font-bold text-white transition hover:bg-ink-hover sm:w-auto"
-              >
-                필로틱 바로가기
+                브랜드 살펴보기
+                <span aria-hidden>↓</span>
               </a>
             </div>
           </div>

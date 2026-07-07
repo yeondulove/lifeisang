@@ -16,9 +16,9 @@ export default function CareersPage() {
   return (
     <>
       <SiteHeader
-        brandName="라이프해킹"
-        logoChar="L"
-        logoClassName="bg-slate-900"
+        logoSrc="/logo/lifehacking-wordmark.png"
+        logoAlt="라이프해킹주식회사"
+        logoBoxClass="h-7 w-[200px] sm:w-[220px]"
         links={[
           { href: "#culture", label: "문화" },
           { href: "#positions", label: "채용 포지션" },

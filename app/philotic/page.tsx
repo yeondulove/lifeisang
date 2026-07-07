@@ -16,8 +16,7 @@ export default function PhiloticPage() {
     <>
       <SiteHeader
         brandName="필로틱"
-        logoChar="필"
-        logoClassName="bg-ink"
+        brandTextClass="text-xl font-serif font-bold tracking-tight text-slate-900"
         links={[
           { href: "#books", label: "출간 도서" },
           { href: "#contact", label: "문의" },
@@ -27,7 +26,7 @@ export default function PhiloticPage() {
         cta={{
           href: "#books",
           label: "도서 살펴보기",
-          className: "bg-ink hover:bg-ink-hover",
+          className: "bg-slate-900 hover:bg-slate-700",
         }}
       />
       <main className="flex-1">

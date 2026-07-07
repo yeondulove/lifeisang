@@ -17,9 +17,9 @@ export default function PudufuPage() {
   return (
     <>
       <SiteHeader
-        brandName="프드프"
-        logoChar="프"
-        logoClassName="bg-brand"
+        logoSrc="/logo/pudufu.png"
+        logoAlt="프드프"
+        logoBoxClass="h-8 w-20"
         links={[
           { href: "#services", label: "서비스" },
           { href: "#cases", label: "수강 후기" },
