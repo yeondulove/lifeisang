@@ -6,7 +6,13 @@ import { useEffect, useRef } from "react";
 const RECRUIT_EMAIL = "recruit@lifehacking.kr";
 
 // 채용 직무 — 이 배열에 한 줄만 추가하면 지원 폼의 직무 선택 탭이 자동으로 늘어납니다.
-const POSITIONS = ["경영지원", "강의기획", "콘텐츠기획", "영상편집"];
+const POSITIONS = [
+  "경영지원",
+  "강의기획",
+  "콘텐츠기획",
+  "영상편집",
+  "출판기획",
+];
 
 // lifehacking_about.html 디자인을 .lh-about 아래로 스코프한 스타일
 const CSS = `
