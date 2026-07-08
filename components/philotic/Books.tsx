@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const BOOKS = [
-  { title: "역행자", cover: null, bestseller: true },
+  { title: "역행자", cover: "/books/yeokhaengja.jpg", bestseller: true },
   { title: "프로이트의 감정수업", cover: "/books/freud.jpg", bestseller: true },
   { title: "완벽한 원시인", cover: "/books/wonsiin.jpg", bestseller: true },
   { title: "무한의 부", cover: "/books/muhan.jpg", bestseller: false },
