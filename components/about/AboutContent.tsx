@@ -377,10 +377,10 @@ export default function AboutContent() {
             </div>
             <div className="num fade">
               <div className="v">
-                인문 <span>10위</span>
+                종합 <span>1위</span>
               </div>
               <div className="k">
-                필로틱 『완벽한 원시인』 — 출간 직후 교보문고 주간베스트⁵
+                필로틱 『완벽한 원시인』 — 출간 직후 교보문고 종합 1위⁵
               </div>
             </div>
             <div className="num fade">
@@ -451,7 +451,7 @@ export default function AboutContent() {
                 진화심리학으로 현대인의 불안과 번아웃을 해부한 인문교양서.
                 『역행자』 이후 4년 만의 신작.
               </div>
-              <span className="badge">출간 직후 교보문고 인문 10위</span>
+              <span className="badge">출간 직후 교보문고 종합 1위</span>
             </div>
             <div className="book-card fade">
               <div className="t">프로이트의 감정수업</div>
