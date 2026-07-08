@@ -3,8 +3,34 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-// 지원서 접수 메일 (운영 전환 시 실제 채용 메일로 변경)
+// 지원서 접수 메일 — 아래 APPS_SCRIPT_URL이 비어있을 때만 쓰이는 예비(mailto) 경로
 const RECRUIT_EMAIL = "recruit@lifehacking.kr";
+
+// 구글시트 자동 수집 웹앱 URL. google-apps-script/README.md 안내대로 배포한 뒤
+// 여기에 "https://script.google.com/macros/s/xxx/exec" 형태로 붙여넣으세요.
+// 비어있으면 예전처럼 mailto(이메일 앱 열기) 방식으로 자동 대체됩니다.
+const APPS_SCRIPT_URL = "";
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 파일당 10MB
+
+type UploadedFile = { name: string; mimeType: string; base64: string };
+
+function fileToBase64(file: File): Promise<UploadedFile> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result || "");
+      const base64 = result.split(",")[1] || "";
+      resolve({
+        name: file.name,
+        mimeType: file.type || "application/octet-stream",
+        base64,
+      });
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
 
 // 채용 직무 — 이 배열에 한 줄만 추가하면 지원 폼의 직무 선택 탭이 자동으로 늘어납니다.
 const POSITIONS = [
@@ -227,16 +253,25 @@ export default function AboutContent() {
       cleanups.push(() => t.removeEventListener("input", upd));
     });
 
-    // 지원 폼: 제출 → mailto
+    // 지원 폼: 제출 → 구글시트(APPS_SCRIPT_URL) 또는 mailto 예비 경로
     const form = root.querySelector<HTMLFormElement>("#applyForm");
-    const onSubmit = (ev: Event) => {
-      ev.preventDefault();
-      if (!form || !form.reportValidity()) return;
-      const v = (id: string) =>
-        (
-          root.querySelector<HTMLInputElement | HTMLTextAreaElement>("#" + id)
-            ?.value ?? ""
-        ).trim();
+    const applyBtn = root.querySelector<HTMLButtonElement>("#applyBtn");
+    const note = root.querySelector<HTMLElement>("#formNote");
+    const v = (id: string) =>
+      (
+        root.querySelector<HTMLInputElement | HTMLTextAreaElement>("#" + id)
+          ?.value ?? ""
+      ).trim();
+    const fileAt = (id: string) =>
+      root.querySelector<HTMLInputElement>("#" + id)?.files?.[0] ?? null;
+
+    const setNote = (text: string, ok: boolean) => {
+      if (!note) return;
+      note.textContent = text;
+      note.classList.toggle("ok", ok);
+    };
+
+    const submitViaMailto = () => {
       const portfolioLink = v("f-portfolio-link");
       const role =
         root.querySelector<HTMLInputElement>('input[name="role"]:checked')
@@ -272,11 +307,95 @@ export default function AboutContent() {
         encodeURIComponent(subject) +
         "&body=" +
         encodeURIComponent(body);
-      const note = root.querySelector<HTMLElement>("#formNote");
-      if (note) {
-        note.textContent =
-          "메일 창이 열렸습니다. 준비하신 서류 파일을 첨부한 뒤 전송해 주시면 지원이 완료됩니다.";
-        note.classList.add("ok");
+      setNote(
+        "메일 창이 열렸습니다. 준비하신 서류 파일을 첨부한 뒤 전송해 주시면 지원이 완료됩니다.",
+        true,
+      );
+    };
+
+    const submitViaSheet = async () => {
+      const resumeFile = fileAt("f-resume");
+      const careerFile = fileAt("f-career");
+      const portfolioFile = fileAt("f-portfolio");
+
+      for (const f of [resumeFile, careerFile, portfolioFile]) {
+        if (f && f.size > MAX_FILE_SIZE) {
+          setNote(
+            `"${f.name}" 파일이 10MB를 초과합니다. 더 작은 파일로 첨부해 주세요.`,
+            false,
+          );
+          return;
+        }
+      }
+
+      if (applyBtn) {
+        applyBtn.disabled = true;
+        applyBtn.textContent = "제출 중…";
+      }
+      setNote("지원서를 제출하고 있습니다…", false);
+
+      try {
+        const [resume, career, portfolio] = await Promise.all([
+          resumeFile ? fileToBase64(resumeFile) : null,
+          careerFile ? fileToBase64(careerFile) : null,
+          portfolioFile ? fileToBase64(portfolioFile) : null,
+        ]);
+
+        const role =
+          root.querySelector<HTMLInputElement>('input[name="role"]:checked')
+            ?.value || "";
+
+        const payload = {
+          role,
+          name: v("f-name"),
+          email: v("f-email"),
+          phone: v("f-phone"),
+          portfolioLink: v("f-portfolio-link"),
+          q1: v("q1"),
+          q2: v("q2"),
+          q3: v("q3"),
+          resume,
+          career,
+          portfolio,
+        };
+
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+        });
+
+        setNote(
+          "지원서가 정상적으로 제출되었습니다. 검토 후 연락드리겠습니다. 감사합니다!",
+          true,
+        );
+        form?.reset();
+        root
+          .querySelectorAll<HTMLElement>(".apply .counter")
+          .forEach((c) => (c.textContent = "0 / 700"));
+      } catch {
+        setNote(
+          "제출 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 " +
+            RECRUIT_EMAIL +
+            " 로 직접 메일 부탁드립니다.",
+          false,
+        );
+      } finally {
+        if (applyBtn) {
+          applyBtn.disabled = false;
+          applyBtn.textContent = "지원서 제출하기";
+        }
+      }
+    };
+
+    const onSubmit = (ev: Event) => {
+      ev.preventDefault();
+      if (!form || !form.reportValidity()) return;
+      if (APPS_SCRIPT_URL) {
+        void submitViaSheet();
+      } else {
+        submitViaMailto();
       }
     };
     form?.addEventListener("submit", onSubmit);
