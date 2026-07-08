@@ -41,11 +41,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSansKr.variable} ${notoSerifKr.variable} h-full antialiased`}
+      className={`${notoSansKr.variable} ${notoSerifKr.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

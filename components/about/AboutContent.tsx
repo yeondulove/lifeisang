@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // 지원서 접수 메일 (운영 전환 시 실제 채용 메일로 변경)
 const RECRUIT_EMAIL = "recruit@lifehacking.kr";
@@ -45,11 +45,19 @@ const CSS = `
 .lh-about .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
 .lh-about .logo{font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:-.02em}
 .lh-about .logo em{font-style:normal;background:linear-gradient(transparent 55%, var(--hl) 55%)}
+.lh-about .nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;margin-right:-8px;border:none;background:none;color:var(--ink);cursor:pointer}
 .lh-about .menu{display:flex;align-items:center;gap:28px;font-size:14.5px;font-weight:500;color:var(--ink-soft)}
 .lh-about .menu a:hover{color:var(--ink)}
 .lh-about .menu .cta{color:var(--ink);border:1.5px solid var(--ink);padding:7px 16px;border-radius:999px;transition:background .2s,color .2s}
 .lh-about .menu .cta:hover{background:var(--ink);color:var(--paper)}
-@media(max-width:720px){.lh-about .menu{gap:16px;font-size:13px}.lh-about .menu .hide-m{display:none}}
+@media(max-width:720px){
+  .lh-about .nav-toggle{display:inline-flex}
+  .lh-about .menu{position:absolute;left:0;right:0;top:64px;display:none;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);padding:6px 24px 16px;box-shadow:0 14px 26px rgba(0,0,0,.07)}
+  .lh-about .menu.open{display:flex}
+  .lh-about .menu a{padding:13px 2px;font-size:16px;border-top:1px solid var(--line)}
+  .lh-about .menu a:first-child{border-top:none}
+  .lh-about .menu .cta{margin-top:12px;text-align:center;padding:12px 16px}
+}
 
 .lh-about .hero{padding:110px 0 90px;border-bottom:1px solid var(--line)}
 .lh-about .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--ink-soft);margin-bottom:26px}
@@ -162,6 +170,24 @@ const CSS = `
 
 export default function AboutContent() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [navOpen, setNavOpen] = useState(false);
+
+  // 내비 링크 클릭: 모바일 메뉴 닫고, 해시 섹션으로 부드럽게 스크롤
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    setNavOpen(false);
+    if (!href.startsWith("#")) return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    window.setTimeout(() => {
+      const y = el.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      history.replaceState(null, "", href);
+    }, 0);
+  };
 
   useEffect(() => {
     const root = rootRef.current;
@@ -264,19 +290,61 @@ export default function AboutContent() {
 
       <nav>
         <div className="wrap nav-in">
-          <a className="logo" href="#top">
+          <a
+            className="logo"
+            href="#top"
+            onClick={(e) => handleNavClick(e, "#top")}
+          >
             LIFE<em>HACKING</em>
           </a>
-          <div className="menu">
-            <a href="#about" className="hide-m">
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label={navOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen(!navOpen)}
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              {navOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+          <div className={navOpen ? "menu open" : "menu"}>
+            <a href="#about" onClick={(e) => handleNavClick(e, "#about")}>
               회사소개
             </a>
-            <a href="#philotic">필로틱</a>
-            <a href="#pudufu">프드프</a>
-            <a href="#culture" className="hide-m">
+            <a href="#philotic" onClick={(e) => handleNavClick(e, "#philotic")}>
+              필로틱
+            </a>
+            <a href="#pudufu" onClick={(e) => handleNavClick(e, "#pudufu")}>
+              프드프
+            </a>
+            <a href="#culture" onClick={(e) => handleNavClick(e, "#culture")}>
               일하는 방식
             </a>
-            <a href="#careers" className="cta">
+            <a
+              href="#careers"
+              className="cta"
+              onClick={(e) => handleNavClick(e, "#careers")}
+            >
               채용
             </a>
           </div>
