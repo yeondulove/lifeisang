@@ -5,9 +5,9 @@
     sans-serif;
   --font-serif: var(--font-noto-serif-kr), "Nanum Myeongjo", serif;
 
-  /* 라이프해킹 다크 글래스 테마 */
-  --color-accent: #6bd7ff;
-  --color-accent-strong: #4ba8ff;
+  /* 라이프해킹 다크 글래스 테마 (강조색: 주황) */
+  --color-accent: #ff8a00;
+  --color-accent-strong: #ff6b00;
   --color-muted: #b8c1cd;
   --color-panel: rgba(255, 255, 255, 0.08);
   --color-panel-strong: rgba(255, 255, 255, 0.14);
@@ -30,7 +30,7 @@ body {
   background:
     radial-gradient(
       circle at top left,
-      rgba(107, 215, 255, 0.22),
+      rgba(255, 138, 0, 0.18),
       transparent 30%
     ),
     linear-gradient(135deg, #07131f 0%, #0f2236 100%);
@@ -55,5 +55,5 @@ body {
     var(--color-accent),
     var(--color-accent-strong)
   );
-  color: #052035;
+  color: #ffffff;
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const BOOKS = [
+  { title: "역행자", cover: null, bestseller: true },
   { title: "프로이트의 감정수업", cover: "/books/freud.jpg", bestseller: true },
   { title: "완벽한 원시인", cover: "/books/wonsiin.jpg", bestseller: true },
   { title: "무한의 부", cover: "/books/muhan.jpg", bestseller: false },
@@ -37,13 +38,24 @@ export default function Books() {
           {BOOKS.map((book) => (
             <article key={book.title} className="group">
               <div className="relative aspect-[2/3] overflow-hidden rounded-lg bg-white/5 shadow-xl ring-1 ring-hairline transition duration-300 group-hover:-translate-y-1.5 group-hover:ring-accent/40">
-                <Image
-                  src={book.cover}
-                  alt={`${book.title} 표지`}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover"
-                />
+                {book.cover ? (
+                  <Image
+                    src={book.cover}
+                    alt={`${book.title} 표지`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-[#12233a] to-[#0a1420] p-4 text-center">
+                    <span className="font-serif text-2xl font-bold leading-tight text-white">
+                      {book.title}
+                    </span>
+                    <span className="mt-3 text-[11px] font-bold uppercase tracking-[0.3em] text-accent">
+                      Philotic
+                    </span>
+                  </div>
+                )}
                 {book.bestseller && (
                   <span className="absolute left-3 top-3 rounded-full bg-gradient-to-br from-accent to-accent-strong px-2.5 py-1 text-[11px] font-bold tracking-wide text-[#052035] shadow-sm">
                     베스트셀러
