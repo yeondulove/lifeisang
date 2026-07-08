@@ -23,7 +23,7 @@ export default function CareersPage() {
         links={[
           { href: "#culture", label: "문화" },
           { href: "#positions", label: "채용 포지션" },
-          { href: "/", label: "회사 소개" },
+          { href: "/about", label: "회사 소개" },
         ]}
         cta={{ href: "#apply", label: "지원하기" }}
       />

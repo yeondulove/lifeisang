@@ -36,6 +36,7 @@ export default function Home() {
           { href: "/pudufu", label: "프드프" },
           { href: "/philotic", label: "필로틱" },
           { href: "#brands", label: "브랜드" },
+          { href: "/about", label: "회사 소개" },
           { href: "/careers", label: "채용" },
         ]}
         cta={{ href: "#contact", label: "문의하기" }}
