@@ -8,7 +8,7 @@ const RECRUIT_EMAIL = "recruit@lifehacking.kr";
 // lifehacking_about.html 디자인을 .lh-about 아래로 스코프한 스타일
 const CSS = `
 .lh-about{
-  --paper:#FCFCFA; --ink:#171715; --ink-soft:#4A4A44; --hl:#FFE94D;
+  --paper:#FCFCFA; --ink:#171715; --ink-soft:#4A4A44; --hl:#FF8A00;
   --philotic:#1F4A38; --philotic-tint:#EDF2EE; --pudufu:#3D45E8; --pudufu-tint:#EEF0FE;
   --line:#E4E2DA;
   --serif: var(--font-noto-serif-kr), 'Nanum Myeongjo', serif;
