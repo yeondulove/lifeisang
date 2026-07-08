@@ -5,6 +5,9 @@ import { useEffect, useRef } from "react";
 // 지원서 접수 메일 (운영 전환 시 실제 채용 메일로 변경)
 const RECRUIT_EMAIL = "recruit@lifehacking.kr";
 
+// 채용 직무 — 이 배열에 한 줄만 추가하면 지원 폼의 직무 선택 탭이 자동으로 늘어납니다.
+const POSITIONS = ["경영지원", "강의기획", "콘텐츠기획", "영상편집"];
+
 // lifehacking_about.html 디자인을 .lh-about 아래로 스코프한 스타일
 const CSS = `
 .lh-about{
@@ -134,6 +137,13 @@ const CSS = `
 .lh-about #applyBtn{margin-top:10px;border:none;cursor:pointer;font-family:var(--sans)}
 .lh-about .form-note{margin-top:14px;font-size:13px;color:var(--ink-soft)}
 .lh-about .form-note.ok{color:var(--philotic);font-weight:700}
+.lh-about .role-tabs{display:flex;flex-wrap:wrap;gap:10px}
+.lh-about .role-tab{cursor:pointer;position:relative}
+.lh-about .role-tab input{position:absolute;opacity:0;width:0;height:0}
+.lh-about .role-tab span{display:inline-block;padding:11px 20px;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-soft);background:#fff;transition:border-color .15s,background .15s,color .15s}
+.lh-about .role-tab:hover span{border-color:var(--ink)}
+.lh-about .role-tab input:checked + span{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.lh-about .role-tab input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
 
 .lh-about .closing{border-top:1px solid var(--line);text-align:center;padding:120px 0}
 .lh-about .closing h2{font-size:clamp(28px,4vw,44px)}
@@ -192,9 +202,13 @@ export default function AboutContent() {
             ?.value ?? ""
         ).trim();
       const portfolioLink = v("f-portfolio-link");
+      const role =
+        root.querySelector<HTMLInputElement>('input[name="role"]:checked')
+          ?.value || "(미선택)";
       const body = [
         "[라이프해킹 상시채용 지원서]",
         "",
+        "지원 직무: " + role,
         "이름: " + v("f-name"),
         "이메일: " + v("f-email"),
         "연락처: " + v("f-phone"),
@@ -213,7 +227,8 @@ export default function AboutContent() {
         "",
         "※ 이력서&자기소개서(필수), 경력기술서·포트폴리오(선택) 파일을 이 메일에 첨부해 주세요.",
       ].join("\n");
-      const subject = "[지원서] " + v("f-name") + " — 라이프해킹 상시채용";
+      const subject =
+        "[지원서] " + v("f-name") + " (" + role + ") — 라이프해킹 상시채용";
       window.location.href =
         "mailto:" +
         RECRUIT_EMAIL +
@@ -577,6 +592,19 @@ export default function AboutContent() {
           </p>
 
           <form className="apply fade" id="applyForm" noValidate>
+            <div className="form-block-title" style={{ marginBottom: 16 }}>
+              지원 직무 <em>*</em>{" "}
+              <span className="hint">지원하실 직무를 선택하세요</span>
+            </div>
+            <div className="role-tabs" style={{ marginBottom: 24 }}>
+              {POSITIONS.map((role) => (
+                <label className="role-tab" key={role}>
+                  <input type="radio" name="role" value={role} required />
+                  <span>{role}</span>
+                </label>
+              ))}
+            </div>
+
             <div className="form-grid">
               <div className="field">
                 <label htmlFor="f-name">
