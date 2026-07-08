@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 // 지원서 접수 메일 (운영 전환 시 실제 채용 메일로 변경)
 const RECRUIT_EMAIL = "recruit@lifehacking.kr";
@@ -106,6 +107,9 @@ const CSS = `
 .lh-about .pudufu-sec h2 em{font-style:normal;color:var(--pudufu)}
 .lh-about .brand p{margin-top:20px;color:var(--ink-soft)}
 .lh-about .book-card{border:1px solid var(--line);border-radius:14px;background:#fff;padding:26px 24px;margin-bottom:14px}
+.lh-about .book-card.with-cover{display:flex;gap:18px;align-items:flex-start}
+.lh-about .book-cover-img{flex:none;width:88px;height:132px;object-fit:cover;border-radius:8px;box-shadow:0 5px 16px rgba(0,0,0,.14)}
+.lh-about .book-body{flex:1;min-width:0}
 .lh-about .book-card .t{font-family:var(--serif);font-weight:700;font-size:18px}
 .lh-about .book-card .a{font-size:14px;color:var(--ink-soft);margin-top:4px}
 .lh-about .book-card .d{font-size:15px;color:var(--ink-soft);margin-top:12px;line-height:1.7}
@@ -154,7 +158,7 @@ const CSS = `
 .lh-about .role-tabs{display:flex;flex-wrap:wrap;gap:10px}
 .lh-about .role-tab{cursor:pointer;position:relative}
 .lh-about .role-tab input{position:absolute;opacity:0;width:0;height:0}
-.lh-about .role-tab span{display:inline-block;padding:11px 20px;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-soft);background:#fff;transition:border-color .15s,background .15s,color .15s}
+.lh-about .role-tab span{display:inline-block;padding:11px 20px;border:1.5px solid var(--line);border-radius:999px;font-weight:500;font-size:14.5px;color:var(--ink-soft);background:#fff;transition:border-color .15s,background .15s,color .15s}
 .lh-about .role-tab:hover span{border-color:var(--ink)}
 .lh-about .role-tab input:checked + span{border-color:var(--ink);background:var(--ink);color:var(--paper)}
 .lh-about .role-tab input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
@@ -484,11 +488,11 @@ export default function AboutContent() {
           <p className="verify fade">
             의심되시면 직접 확인하세요.{" "}
             <a
-              href="https://search.kyobobook.co.kr/search?keyword=필로틱"
+              href="https://www.philotic.co.kr"
               target="_blank"
               rel="noopener noreferrer"
             >
-              교보문고에서 필로틱을 검색
+              필로틱 공식 사이트를 방문
             </a>
             하거나,{" "}
             <a
@@ -525,7 +529,7 @@ export default function AboutContent() {
             </p>
             <a
               className="brand-link fade"
-              href="https://search.kyobobook.co.kr/search?keyword=필로틱"
+              href="https://www.philotic.co.kr"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -533,22 +537,41 @@ export default function AboutContent() {
             </a>
           </div>
           <div>
-            <div className="book-card fade">
-              <div className="t">완벽한 원시인</div>
-              <div className="a">자청 지음 · 2026</div>
-              <div className="d">
-                진화심리학으로 현대인의 불안과 번아웃을 해부한 인문교양서.
-                『역행자』 이후 4년 만의 신작.
+            <div className="book-card with-cover fade">
+              <Image
+                src="/books/wonsiin.jpg"
+                alt="완벽한 원시인 표지"
+                width={88}
+                height={132}
+                className="book-cover-img"
+              />
+              <div className="book-body">
+                <div className="t">완벽한 원시인</div>
+                <div className="a">자청 지음 · 2026</div>
+                <div className="d">
+                  진화심리학으로 현대인의 불안과 번아웃을 해부한 인문교양서.
+                  『역행자』 이후 4년 만의 신작.
+                </div>
+                <span className="badge">출간 직후 교보문고 종합 1위</span>
               </div>
-              <span className="badge">출간 직후 교보문고 종합 1위</span>
             </div>
-            <div className="book-card fade">
-              <div className="t">프로이트의 감정수업</div>
-              <div className="a">강이안 지음 · 2025</div>
-              <div className="d">
-                보이지 않는 무의식의 세계를 현대 독자의 언어로 풀어낸 심리교양서.
+            <div className="book-card with-cover fade">
+              <Image
+                src="/books/freud.jpg"
+                alt="프로이트의 감정수업 표지"
+                width={88}
+                height={132}
+                className="book-cover-img"
+              />
+              <div className="book-body">
+                <div className="t">프로이트의 감정수업</div>
+                <div className="a">강이안 지음 · 2025</div>
+                <div className="d">
+                  보이지 않는 무의식의 세계를 현대 독자의 언어로 풀어낸
+                  심리교양서.
+                </div>
+                <span className="badge">독자 평점 9.9</span>
               </div>
-              <span className="badge">독자 평점 9.9</span>
             </div>
           </div>
         </div>

@@ -5,13 +5,13 @@ import "./globals.css";
 const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["400", "500", "700"],
 });
 
 const notoSerifKr = Noto_Serif_KR({
   variable: "--font-noto-serif-kr",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "900"],
+  weight: ["600", "700", "900"],
 });
 
 export const metadata: Metadata = {
