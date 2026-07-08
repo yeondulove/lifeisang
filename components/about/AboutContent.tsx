@@ -243,7 +243,7 @@ export default function AboutContent() {
 
       <nav>
         <div className="wrap nav-in">
-          <a className="logo" href="/">
+          <a className="logo" href="#top">
             LIFE<em>HACKING</em>
           </a>
           <div className="menu">
@@ -414,7 +414,7 @@ export default function AboutContent() {
           <p className="footnote">
             ¹ 출판사 발표 누적 판매 기준 &nbsp;² 프드프 공개 자료 기준 &nbsp;³
             2026년 7월 프드프 표기 기준 &nbsp;⁴ 언론 보도 기준(전자신문, 2025.4)
-            &nbsp;⁵ 교보문고 주간베스트, 출간 주 기준
+            &nbsp;⁵ 교보문고 종합 주간베스트, 출간 주 기준
           </p>
         </div>
       </section>

@@ -24,7 +24,7 @@ export default function Footer() {
         <div>
           <p className="font-bold text-white">바로가기</p>
           <nav className="mt-3 flex flex-col gap-2 text-muted">
-            <a href="/about" className="transition hover:text-accent">
+            <a href="/" className="transition hover:text-accent">
               회사 소개
             </a>
             <a href="/careers" className="transition hover:text-accent">
