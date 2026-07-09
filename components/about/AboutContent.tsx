@@ -90,6 +90,9 @@ const CSS = `
 .lh-about .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;color:var(--ink-soft);margin-bottom:26px}
 .lh-about h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,5.6vw,62px);line-height:1.32;letter-spacing:-.015em}
 .lh-about .hero p.lead{margin-top:32px;font-size:clamp(16px,1.8vw,19px);color:var(--ink-soft);max-width:560px}
+.lh-about .hero-stats{margin-top:40px;display:flex;flex-wrap:wrap;gap:32px}
+.lh-about .hero-stat .v{font-family:var(--serif);font-weight:900;font-size:clamp(24px,2.6vw,32px);color:var(--ink)}
+.lh-about .hero-stat .k{margin-top:4px;font-size:13.5px;color:var(--ink-soft)}
 .lh-about .hero-cta{margin-top:44px;display:flex;gap:12px;flex-wrap:wrap}
 .lh-about .btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15.5px;transition:transform .15s,box-shadow .15s}
 .lh-about .btn:hover{transform:translateY(-2px)}
@@ -103,6 +106,29 @@ const CSS = `
 .lh-about h2{font-family:var(--serif);font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.45;letter-spacing:-.01em}
 .lh-about .fade{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .lh-about .fade.on{opacity:1;transform:none}
+
+.lh-about .self-nav{border-bottom:1px solid var(--line);background:#fff}
+.lh-about .path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.lh-about .path-grid{grid-template-columns:1fr}}
+.lh-about .path-card{display:block;border:1.5px solid var(--line);border-radius:16px;padding:28px 26px;transition:border-color .2s,transform .2s;background:var(--paper)}
+.lh-about .path-card:hover{border-color:var(--ink);transform:translateY(-3px)}
+.lh-about .path-card .q{font-size:14px;color:var(--ink-soft);font-weight:500}
+.lh-about .path-card .go{margin-top:10px;font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink)}
+.lh-about .path-card .arrow{margin-top:16px;font-size:14px;font-weight:700;color:var(--ink-soft)}
+.lh-about .path-card:hover .arrow{color:var(--ink)}
+
+.lh-about .fit{margin-top:56px;border-top:1px solid var(--line);padding-top:48px}
+.lh-about .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){.lh-about .fit-grid{grid-template-columns:1fr}}
+.lh-about .fit-col{border-radius:16px;padding:28px 26px}
+.lh-about .fit-col.no{background:#F2F1EC;color:var(--ink-soft)}
+.lh-about .fit-col.yes{background:var(--ink);color:var(--paper)}
+.lh-about .fit-col .ft{font-family:var(--serif);font-weight:700;font-size:19px;margin-bottom:16px}
+.lh-about .fit-col.yes .ft{color:var(--hl)}
+.lh-about .fit-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.lh-about .fit-col li{font-size:15px;line-height:1.6;padding-left:20px;position:relative}
+.lh-about .fit-col.no li::before{content:"–";position:absolute;left:0;color:#B0AFA6}
+.lh-about .fit-col.yes li::before{content:"✓";position:absolute;left:0;color:var(--hl);font-weight:700}
 
 .lh-about .worries{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:44px 0 40px}
 .lh-about .worry{border:1px solid var(--line);border-radius:14px;padding:26px 24px;background:#fff;font-size:15.5px;color:var(--ink-soft)}
@@ -149,7 +175,7 @@ const CSS = `
 .lh-about .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .lh-about .pill{font-size:13.5px;font-weight:500;border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;color:var(--ink-soft)}
 
-.lh-about .culture-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.lh-about .culture-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:44px}
 @media(max-width:820px){.lh-about .culture-grid{grid-template-columns:1fr}}
 .lh-about .cul{border:1px solid var(--line);border-radius:14px;padding:28px 24px;background:#fff}
 .lh-about .cul .t{font-family:var(--serif);font-weight:700;font-size:18px;margin-bottom:10px}
@@ -477,7 +503,7 @@ export default function AboutContent() {
       {/* 히어로 */}
       <header className="hero" id="top">
         <div className="wrap">
-          <div className="eyebrow">CONTENT COMPANY · SEOUL</div>
+          <div className="eyebrow">콘텐츠를 시스템으로 만드는 회사</div>
           <h1>
             콘텐츠는 많습니다.
             <br />
@@ -491,19 +517,67 @@ export default function AboutContent() {
             『역행자』의 자청이 만든 콘텐츠 컴퍼니. 출판 브랜드 필로틱과 지식
             플랫폼 프드프를 운영합니다.
           </p>
+
+          <dl className="hero-stats">
+            <div className="hero-stat fade">
+              <dt className="v">2년 연속</dt>
+              <dd className="k">필로틱 출간작 종합 베스트셀러</dd>
+            </div>
+            <div className="hero-stat fade">
+              <dt className="v">60만+</dt>
+              <dd className="k">유튜브·인스타 등 채널 도달</dd>
+            </div>
+            <div className="hero-stat fade">
+              <dt className="v">80만 부</dt>
+              <dd className="k">『역행자』 누적 판매</dd>
+            </div>
+          </dl>
+
           <div className="hero-cta">
-            <a className="btn btn-ink" href="#philotic">
-              필로틱 도서 보기
-            </a>
-            <a className="btn btn-line" href="#pudufu">
-              프드프 바로가기
-            </a>
-            <a className="btn btn-ghost" href="#careers">
+            <a className="btn btn-ink" href="#careers">
               함께할 동료 찾기 →
+            </a>
+            <a className="btn btn-ghost" href="#about">
+              회사 소개 더 보기 ↓
             </a>
           </div>
         </div>
       </header>
+
+      {/* 자가 분류 내비게이션 */}
+      <section className="self-nav">
+        <div className="wrap">
+          <div className="path-grid">
+            <a
+              className="path-card fade"
+              href="https://www.philotic.co.kr/#submit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="q">책을 내고 싶으신가요?</div>
+              <div className="go">필로틱</div>
+              <div className="arrow">원고 투고 안내 →</div>
+            </a>
+            <a
+              className="path-card fade"
+              href="#careers"
+              onClick={(e) => handleNavClick(e, "#careers")}
+            >
+              <div className="q">함께 일하고 싶으신가요?</div>
+              <div className="go">채용</div>
+              <div className="arrow">일하는 방식 보기 →</div>
+            </a>
+            <a
+              className="path-card fade"
+              href="mailto:contact@lifehacking.kr?subject=[라이프해킹] 제휴 문의"
+            >
+              <div className="q">협업을 원하시나요?</div>
+              <div className="go">제휴 문의</div>
+              <div className="arrow">이메일 보내기 →</div>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* 왜 라이프해킹인가 */}
       <section id="about">
@@ -555,10 +629,11 @@ export default function AboutContent() {
           <div className="num-grid">
             <div className="num fade">
               <div className="v">
-                <span>60만</span> 독자
+                <span>80만</span> 부
               </div>
               <div className="k">
-                『역행자』 — 라이프해킹의 뿌리가 된 자청의 콘텐츠 철학¹
+                『역행자』 누적 판매 — 라이프해킹의 뿌리가 된 자청의 콘텐츠
+                철학¹
               </div>
             </div>
             <div className="num fade">
@@ -761,17 +836,28 @@ export default function AboutContent() {
           </h2>
           <div className="culture-grid">
             <div className="cul fade">
-              <div className="t">독서가 업무입니다</div>
+              <div className="t">수요지식회</div>
               <p>
-                전 직원이 읽고, 토론하고, 그 인사이트가 다시 콘텐츠가 됩니다.
-                매주 지식을 나누는 자리가 정례로 열립니다.
+                매주 수요일, 전 직원이 모여 읽은 것과 배운 것을 나눕니다. 그
+                인사이트가 다시 콘텐츠가 됩니다. 이 문화로 독서경영 우수사례로
+                수상한 이력도 있습니다.
               </p>
             </div>
             <div className="cul fade">
               <div className="t">AI가 기본기입니다</div>
               <p>
-                기획자도, 편집자도, 마케터도 AI 도구로 일합니다. 지금 보고 계신
-                이 홈페이지도 AI 코딩으로 직접 만들었습니다.
+                기획자도, 편집자도, 마케터도 AI 도구로 일합니다. 인사팀
+                수연님은 채용 현황을 한눈에 보는 대시보드를, 현종님은 사내
+                교육 플랫폼을 AI로 직접 만들어 씁니다. 지금 보고 계신 이
+                홈페이지도 AI 코딩으로 직접 만들었습니다.
+              </p>
+            </div>
+            <div className="cul fade">
+              <div className="t">결과로 보상합니다</div>
+              <p>
+                성과에 따라 S·A·B·C 등급으로 명확하게 보상하는 성과보상
+                제도를 운영합니다. 노력의 총량이 아니라 만들어낸 결과가
+                기준입니다.
               </p>
             </div>
             <div className="cul fade">
@@ -780,6 +866,32 @@ export default function AboutContent() {
                 소수 정예 조직으로, 한 사람이 프로젝트의 처음과 끝을 봅니다.
                 성장의 속도는 조직의 크기가 아니라 밀도에서 나옵니다.
               </p>
+            </div>
+          </div>
+
+          <div className="fit">
+            <div className="chapter fade">WHO WE'RE LOOKING FOR</div>
+            <div className="fit-grid">
+              <div className="fit-col no fade">
+                <div className="ft">이런 분은 지원하지 않으셔도 됩니다</div>
+                <ul>
+                  <li>정해진 매뉴얼대로만 일하고 싶은 분</li>
+                  <li>
+                    책을 읽지 않아도 좋은 콘텐츠를 만들 수 있다고 생각하는 분
+                  </li>
+                  <li>새로운 AI 도구를 익히는 게 귀찮게 느껴지는 분</li>
+                  <li>결과보다 들인 노력의 총량으로 평가받고 싶은 분</li>
+                </ul>
+              </div>
+              <div className="fit-col yes fade">
+                <div className="ft">이런 분과 함께 일하고 싶습니다</div>
+                <ul>
+                  <li>정답이 없는 문제를 스스로 붙잡고 답을 만들어가는 분</li>
+                  <li>매주 읽고 나누는 걸 부담이 아니라 성장으로 느끼는 분</li>
+                  <li>AI를 도구로 다루는 데 거부감이 없는 분</li>
+                  <li>내가 만든 것의 결과를 숫자로 증명하고 싶은 분</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
