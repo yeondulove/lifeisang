@@ -15,6 +15,7 @@ const notoSerifKr = Noto_Serif_KR({
 });
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false }, // 모든 검색엔진 노출 차단
   title: "라이프해킹(주) | 인생의 난이도를 낮추는 배움과 책",
   description:
     "라이프해킹(주)는 강의 플랫폼 프드프와 출판사 필로틱을 운영합니다. 검증된 지식을 가장 배우기 좋은 형태로 만듭니다.",
@@ -47,6 +48,3 @@ export default function RootLayout({
     </html>
   );
 }
-export const metadata: Metadata = {
-  robots: { index: false, follow: false },   // ← 추가: 모든 검색엔진 노출 차단
-  title: "라이프해킹(주) | ...",
