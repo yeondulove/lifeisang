@@ -47,3 +47,6 @@ export default function RootLayout({
     </html>
   );
 }
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },   // ← 추가: 모든 검색엔진 노출 차단
+  title: "라이프해킹(주) | ...",
